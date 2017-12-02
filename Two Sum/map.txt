@@ -1,0 +1,24 @@
+#include<map>
+class Solution {
+public:
+	vector<int> twoSum(vector<int>& nums, int target) {
+		map<int, int> map1;
+                vector<int> num;
+		for (int i = 0; i < nums.size(); i++)
+		{
+			map1[nums[i]] = i;
+		}
+		for(int i=0;i<nums.size;i++)
+               {
+                  int n=target-nums[i];
+                  if(map1.count(n)&&map1[n]!=i)
+                  {
+                    num.push_back(map1[n]);
+                
+                    num.push_back(i);
+               
+                    return num;
+                  }
+               }
+	}
+};
