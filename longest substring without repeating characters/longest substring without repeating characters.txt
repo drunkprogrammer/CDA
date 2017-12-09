@@ -1,52 +1,22 @@
+#include<string>
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if(s.empty())
-            return 0;
-        int allh=s.length();
-        int llh=1;
-        char temp;
-        int i,j,k,flag;
-        
-        string substring;
-        substring[0]=s[0];
-        for(i=1;i<allh;i++)
-        {
-            flag=0;
-            temp=s[i];
-            for(j=0;j<i;j++)
-            {
-                if(s[i]==s[j])
-                {
-                    i=j+1;
-                    flag=1;
-                    break;
-                }
-                    
-            }
-            if(flag==0)
-            {
-                llh++;
-                i++;
-            }
-               
-            /*for(j=0;j<substring.length();j++)
-            {
-                if(temp==substring[j])
-                {
-                    for(k=j;k<substring.length();k++)
-                    {
-                        substring[k-j]=substring[k];
-                    }
-                    flag=1;
-                    break;
-                }
-            }
-            if(flag==0)
-                 substring[i]=temp;
-            else
-                substring[substring.length()+1]=temp;*/
-        }
-        return llh;
+       string ans;
+       int res=0;
+       for(int i=0;i<s.length();i++)
+       {
+           if(ans.find(s[i])>=ans.length())
+                 ans+=s[i];
+           else   
+           {
+              
+                   ans=ans.substr(ans.find(s[i])+1,ans.length()-1);
+                   ans+=s[i];
+           }
+            res=max(res,(int)ans.length());
+              
+       }
+      return res;
     }
 };
