@@ -1,0 +1,28 @@
+#include<string.h>
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string sub;
+        int j=0,length=0,temp=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.find(s[i])&&s.find(s[i])!=i)
+            {
+                 j=s.find(s[i]);
+                 j>i?j=j:{temp=i;i=j;j=temp;};
+                if(j<i)
+                {
+                     temp=i;i=j;j=temp;
+                }
+                   
+                 if(j-i>length)
+                 {
+                     for(int k=i;k<=j;k++)
+                     sub+=s[k];
+                 }
+                 length=max(j-i,length);
+            }   
+        }
+        return sub;
+    }
+};
