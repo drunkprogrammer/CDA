@@ -1,0 +1,1 @@
+The problem has two argc. The first one is string,the other one is the number of row. You can change the row number to the column number. So the zigzag conversion is satisfied. You can traverse the row char to complete the requirement. And the blank place has itself regular when it uses the second argc as the column number 
