@@ -1,28 +1,46 @@
-#include<string.h>
+#include<cstring>
+#include <algorithm>
 class Solution {
 public:
     string longestPalindrome(string s) {
+        string rs;
         string sub;
-        int j=0,length=0,temp=0;
+        int position=0;
+        int maxlen=0;
+        rs=s;
+        reverse(s.begin(),s.end());
+        for(int i=0;i<rs.length();i++)
+        {
+            for(int j=rs.length()-i;j>0;j--)
+            {
+                sub=rs.substr(i,j);
+                if(s.find(sub)!=string::npos && maxlen<sub.length() && (s.find(sub)+i+j)==rs.length())
+                {
+                    maxlen=sub.length();
+                    position=i;
+                }
+            }
+        }
+        sub=rs.substr(position,maxlen);
+        /*string sub1;
+        string sub2;
+        string sub;
+        int j=0,temp=0;
         for(int i=0;i<s.length();i++)
         {
             if(s.find(s[i])&&s.find(s[i])!=i)
             {
-                 j=s.find(s[i]);
-                 j>i?j=j:{temp=i;i=j;j=temp;};
-                if(j<i)
-                {
-                     temp=i;i=j;j=temp;
-                }
-                   
-                 if(j-i>length)
+                j=s.find(s[i]);
+                 if(j-i>sub.length())
                  {
-                     for(int k=i;k<=j;k++)
-                     sub+=s[k];
+                     sub1=s.substr(i,j-i);
+                     sub2=sub1;
+                     reverse(sub1.begin(),sub1.end());
+                     if(sub1==sub2)
+                         sub=sub1;
                  }
-                 length=max(j-i,length);
             }   
-        }
+        }*/
         return sub;
     }
 };
