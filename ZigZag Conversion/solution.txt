@@ -1,46 +1,15 @@
-#include<string>
-#include<ctype.h>
 class Solution {
 public:
     string convert(string s, int numRows) {
-        if(s.length()==0)
-            return "";
-        string sub[numRows];
-        string convertstring;
-        int i=0,j=0;
-        while(i<s.length())
-        {
-            if(j%2==0)
-            {
-             sub[1]+=s[i];
-             for(int k=2;k<=numRows;k++)
-             sub[k]+=s[i++];
-            }
-             if(j%2==1)
-            {
-             sub[1]+=" ";
-             for(int k=2;k<=numRows;k++)
-             {
-                 if(k%2==0)
-                 sub[k]+=s[i++];   
-                 else
-                  sub[k]+=" ";    
-             }
-            
-            } 
-             j++;
+        if(numRows<2 || s.size()<=numRows) return s;
+        string res(s.size(),0);
+        char *p=&res[0];
+        for(int i=0, j,k, step=(numRows-1)*2;i<numRows;++i) {
+            if(i==0 || i==numRows-1) 
+                for(j=i;j<s.size();j+=step) *p++=s[j];
+            else
+                for(j=i, k=i<<1;j<s.size();k=step-k,j+=k) *p++=s[j];
         }
-        
-        for(i=1;i<=numRows;i++)
-        {
-            for(j=0;j<sub[i].length();j++)
-            {
-                if(iswspace(sub[i][j]))
-                    sub[i].erase(j,1);
-            }
-            convertstring+=sub[i];
-        }
-            
-        return convertstring;
+        return res;
     }
 };
