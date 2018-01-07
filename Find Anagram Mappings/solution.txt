@@ -1,0 +1,21 @@
+#include <algorithm> 
+class Solution {
+public:
+    vector<int> anagramMappings(vector<int>& A, vector<int>& B) {
+        int length=A.size();
+        vector<int> C;
+         if(length==0 || length==1) 
+         {
+             C.push_back(0);
+             return C;
+         }
+        std::vector<int>::iterator it;
+        for(int i=0;i<length;i++)
+        {
+            it=find(B.begin(),B.end(),A[i]);
+             int j=it-B.begin();
+            C.push_back(j);
+        }
+        return C;
+    }
+};
