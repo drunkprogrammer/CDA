@@ -1,0 +1,21 @@
+#include<algorithm>
+#include<string>
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        string::iterator it;
+        string::iterator ti;
+        for(it=s.begin(),ti=t.begin();it!=s.end();it++)
+        {
+             if(t.find(*it)==string::npos)
+               return *it;
+             else
+             {
+                 it=t.erase(it);
+                 ti=ti+t.find(*it);
+                 ti=s.erase(ti);
+             }
+        }
+       
+    }
+};
