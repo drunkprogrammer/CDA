@@ -1,0 +1,8 @@
+xor:
+
+(a^b)^c=a^(b^c)
+
+compare the binary ascii of char in string .
+first loop, get the first string xor value.
+second loop,the first string xor value xor the second string.
+so,the two same char is 0, return the added char

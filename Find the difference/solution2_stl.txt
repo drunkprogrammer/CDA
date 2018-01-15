@@ -1,0 +1,6 @@
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        return accumulate(begin(s), end(s += t), 0, bit_xor<int>());
+    }
+};
