@@ -1,0 +1,41 @@
+class Solution {
+public:
+    void swap(int &num1,int &num2)
+    {
+       int temp;
+	   temp =num1;
+	   num1 = num2;
+	   num2 = temp;
+    }
+    int partition(vector<int> &nums,int m,int n)
+    {
+        int x=nums[n-1];
+        int q=m-1;
+        for(int i=m;i<n-1;i++)
+        {
+              if(nums[i]<=x)
+              {
+                  q++;
+                  swap(nums[q],nums[i]);
+              }
+                 
+        }
+        swap(nums[q+1],nums[n-1]);
+        return q+1;
+      
+    }
+    void quicksort(vector<int> &nums,int m,int n)
+    {
+        int q=0;
+        if(m<n-1)
+        {
+            q=partition(nums,m,n);
+            quicksort(nums,m,q);
+            quicksort(nums,q+1,n);
+        }
+    }
+    void sortColors(vector<int>& nums) {
+        int size=nums.size();
+        quicksort(nums,0,size);
+    }
+};
