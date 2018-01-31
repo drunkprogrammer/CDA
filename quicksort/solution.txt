@@ -1,20 +1,21 @@
 #include<iostream>
 #include<stdlib.h>
 using namespace std;
-#define f 7
-void swap(int &c,int &b)
+#define f 4
+void swap(int &a,int &b)
 {
-	c=c + b;
-	b = c- b;
-	c = c - b;
+	int temp;
+	temp = a;
+	a = b;
+	b = temp;
 }
 int partition(int *a,int m,int n)
 {
 	int x = a[n - 1];
 	int k = m-1;
-	for (int i = m; i < n-1; i++)
+	for (int i = m; i < n-1; ++i)
 	{
-		if (a[i] > x)
+		if (a[i] <= x) 
 		{
 			k++;
 			swap(a[i], a[k]);
@@ -26,10 +27,9 @@ int partition(int *a,int m,int n)
 }
 void quicksort(int *a,int m,int n)
 {
-	int q=0;
 	if (m < n-1)
 	{
-		q = partition(a, m, n);
+		int q = partition(a, m, n);
 		quicksort(a,m,q);
 	    quicksort(a,q+1,n);
 	}
@@ -37,7 +37,7 @@ void quicksort(int *a,int m,int n)
 }
 int main()
 {
-	int a[f] = { 10,80,30,90,40,50,70 };
+	int a[f] = { 1,2,45,6 };
 	quicksort(a,0,f);
 	for (int i = 0; i < f; i++)
 	{
