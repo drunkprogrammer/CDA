@@ -1,4 +1,4 @@
-759. Employee Free Time My SubmissionsBack to Contest
+759. Employee Free Time 
 User Accepted: 516
 User Tried: 625
 Total Accepted: 523
