@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+      int size1 = s.length();
+		int size2 = p.length();
+		int i = 0;
+		int j = 0;
+		for (;i < size1&&j<size2;)
+		{
+			char base = s[i];
+			if (p[j] == '.' || p[j] == '*')
+			{
+				if (p[j] == '.') i++;
+				else if (p[j - 1] == base || p[j - 1] == '.' || p[j + 1] == base) i++;
+				else return false;
+			}
+			else if (p[j] == base)
+			{
+				i++;
+			}
+			else
+				if (p[j + 1] == '*');
+				else return false;
+			j++;
+		}
+		if(i==size1 && j==size2) return true;
+		else return false;
+    }
+};
