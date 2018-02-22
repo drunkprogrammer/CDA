@@ -1,0 +1,21 @@
+class Solution {
+private:
+    set<string> letterCase;
+public:
+   void dfs(set<string> &letterCase,int reach,string S)
+	{
+	   if (reach== S.length()) {letterCase.insert(S); return;}
+       S[reach]=tolower(S[reach]);
+       dfs(letterCase,reach+1,S);
+       S[reach]=toupper(S[reach]);
+       dfs(letterCase,reach+1,S);
+		/*if ((S[reach] <= 'z' && S[reach] >= 'a')) {S[reach]=S[reach]-32;}
+        dfs(letterCase,reach+1,label,S);
+        if ((S[reach]<='Z' && S[reach]>='A')){S[reach]=S[reach]+32;} 
+        dfs(letterCase,reach + 1,label,S);*/
+   }
+	vector<string> letterCasePermutation(string S) {
+		dfs(letterCase,0,S);
+        return vector<string>(letterCase.begin(),letterCase.end());
+	}
+};
