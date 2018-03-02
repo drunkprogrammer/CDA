@@ -1,35 +1,31 @@
 class Solution {
 public:
-    bool goodnumber(int n){   
-      int valid=0;
-      int vv = 1;
-      int num;
-      while (n % 10 != 0)
-      {
-	   num = n % 10;
-	   n = n - num*vv;
-	   if (num == 2 || num == 5) (num - 2) == 0 ? num = 5 : num = 2;
-	else if (num == 6 || num == 9) (num - 6) == 0 ? num = 9 : num = 6;
-	  valid = valid + num*vv;
-	  vv = vv * 10;
-     }
-      if(valid == n)
-     {
-    	return false;
-     }
-     else return true;
- }
-    int rotatedDigits(int N) {
-        int number=0;
-        for(int i=1;i<=N;i++)
-        {
-            if(goodnumber(i)==true)
-            {
-                number++;
-            }
-            else
-                continue;
-        }
-        return number;
-    }
+	bool goodnumber(int n) {
+		int real = n;
+		int valid = 0;
+		int vv = 1;
+		int num;
+		while (n % 10 != 0 || n != 0)
+		{
+			num = n % 10;
+			n = n / 10;
+			if (num == 2 || num == 5) (num - 2) == 0 ? num = 5 : num = 2;
+			else if (num == 6 || num == 9) (num - 6) == 0 ? num = 9 : num = 6;
+			if (num == 3 || num == 4 || num == 7) return false;
+			valid = valid + num*vv;
+			vv = vv * 10;
+		}
+		if (valid == real)
+			return false;
+		return true;
+	}
+	int rotatedDigits(int N) {
+		int number = 0;
+		for (int i = 1; i <= N; i++)
+		{
+			if (goodnumber(i))
+				number++;
+		}
+		return number;
+	}
 };
