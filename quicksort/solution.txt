@@ -29,8 +29,8 @@ void quicksort(int *a,int m,int n)
 {
 	if (m < n-1)
 	{
-		int q = partition(a, m, n);
-		quicksort(a,m,q);
+	    int q = partition(a, m, n);
+	    quicksort(a,m,q);
 	    quicksort(a,q+1,n);
 	}
 	
