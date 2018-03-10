@@ -5,7 +5,7 @@ This project includes the Data Structures, Algorithms example coding such as lis
 
 By coding on the Leetcode judgement, I start thinking about what is the meaning of programming, what is time complexity and how to estimate it.
 
-Keep it up. Go bears!!!###  ###
+Keep it up. Go bears!!!
 
 
 Summarizing how to solve problem is very important. Because the note will help you understand the problem you have solved. It is a pity that I realize it now.
@@ -30,11 +30,11 @@ The length of S will be in the range of [1, 50000].
 The length of words will be in the range of [1, 5000].
 The length of words[i] will be in the range of [1, 50].
 
-#### 思路总结####
+#### 思路总结 ####
 
 从给出的子字符串中计算出匹配于S的个数。题目中要求的是subsequences而不是substring,所以子字符串的字符不必连续。并且既然是subsequences,那么子字符串的字符也必然是按照顺序来的，在S中前后顺序必然也是子字符串的前后顺序。
 
-题目中S的长度在1~50000，子字符串的个数也在1~5000，每个字符串的字符数在1~50个。
+题目中S的长度在1-50000，子字符串的个数也在1-5000，每个字符串的字符数在1-50个。
 
 那么第一种思路来了：
  依次对每子个字符串的所有字符进行遍历，从S中查找是否有相同的字符，查找到的那个字符就不能再匹配子字符串的其他字符了。这种思路就是暴力破解法。O(S.length*words.length+sum(words[i].length)),复杂度在25000万以上，以现代计算机的运算速度来看，运算次数控制在百万和千万以下，大多程序都可以在几秒内处理完毕。Online Judgement系统(leetcode)给出的最大运算时间是2s,如果超过2s,系统就会报出Time Limit Exceeded(超时)的错误.第一种方法明显超时。
