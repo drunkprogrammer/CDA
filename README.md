@@ -98,3 +98,72 @@ upper_bound()是二分查找函数，返回第一个比x大的值。
 lower_bound()返回的是一个不小于x的距离x最短值。
 
 这个问题就这样解决了，更优质的思路还待续......
+
+
+
+
+## Stack ##
+
+###[Valid Parentheses]###
+#### 20- 问题描述####
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+
+#### 思路总结 ####
+判断字符串是不是有效的括号。将字符串的字符依次放入栈中，如果字符和栈顶字符恰好是一对括号，则可以让栈的栈顶元素出栈，否则将该字符入栈。当字符串的所有字符判断完毕，再去检查栈中是否还留有元素。如果还有，则字符串不是有效的括号。反之，如果栈为空，则字符串是有效的括号。
+
+栈（Stack）是一个容器适配器（Container adaptor）类型，被特别设计用来运行于LIFO（Last-in first-out）场景，在该场景中，只能从容器末尾添加（Insert）或提取（Extract）元素。stack 提供了一系列成员函数用于操作它的元素，只能从容器“后面”压进（Push）元素或从容器“后面”提取（Pop）元素。容器中的“后面”位置也被称为“栈顶”。
+用来实现栈的底层容器必须满足顺序容器的所有必要条件。满足上述条件的标准容器有 std::vector、std::deque 及 std::list，如果未特别指定 stack 的底层容器，标准容器 std::deque 将被使用。
+
+用stack实现的代码：
+
+	#include<stack>
+	class Solution {
+	public:
+	    bool isValid(string s) {
+	        if(s.length()==0) return false;
+	        stack<char> stack1;
+	        for(int i=0;i<s.length();i++)
+	        {
+	            if(i>0){
+	                if(!stack1.empty() && stack1.top()=='[' && s[i]==']') stack1.pop();
+	                else if(!stack1.empty() && stack1.top()=='(' && s[i]==')') stack1.pop();
+	                else if(!stack1.empty() && stack1.top()=='{' && s[i]=='}') stack1.pop();
+	                else stack1.push(s[i]);
+	            }
+	            else stack1.push(s[i]);
+	        }
+	        if(stack1.size()!=0) return false;
+	        return true;
+	    }
+	};
+
+
+这里有个地方需要注意：如果没有加上stack1.empty()的判断条件，那么程序将会报出Runtime Error（运行错误）。原因是用"[]{}()"这个用例测试的时候，当i=2时，栈为空，那么stack.top()这句代码将会被编译器优化，实际上调用的是deque的back(),而调用这句的时候，指针需要向下移一个位置，这样stack.top()就成了未定义的行为，由此报错。
+
+
+然而用vector实现的时候，则不必考虑是否为空的情况，实现代码如下：
+
+	class Solution {
+	public:
+	    bool isValid(string s) {
+	        if(s.length()==0) return false;
+	        vector<char> stack1;
+	        for(int i=0;i<s.length();i++)
+	        {
+	            if(i>0){
+	                if(stack1.back()=='[' && s[i]==']') stack1.pop_back();
+	                else if(stack1.back()=='(' && s[i]==')') stack1.pop_back();
+	                else if(stack1.back()=='{' && s[i]=='}') stack1.pop_back();
+	                else stack1.push_back(s[i]);
+	            }
+	            else
+	            stack1.push_back(s[i]);
+	        }
+	        if(stack1.size()!=0) return false;
+	        return true;
+	    }
+	};
+
+毕竟vector也是用来实现栈的底层容器......
