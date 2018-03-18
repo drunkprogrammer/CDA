@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.length()==0) return false;
+        vector<char> stack1;
+        for(int i=0;i<s.length();i++)
+        {
+            if(i>0){
+                if(stack1.back()=='[' && s[i]==']') stack1.pop_back();
+                else if(stack1.back()=='(' && s[i]==')') stack1.pop_back();
+                else if(stack1.back()=='{' && s[i]=='}') stack1.pop_back();
+                else stack1.push_back(s[i]);
+            }
+            else
+            stack1.push_back(s[i]);
+        }
+        if(stack1.size()!=0) return false;
+        return true;
+    }
+};
