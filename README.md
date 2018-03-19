@@ -167,3 +167,43 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 	};
 
 毕竟vector也是用来实现栈的底层容器......
+
+
+##Linked List##
+###[Remove Nth Node From End of List]###
+####19-问题描述####
+Given a linked list, remove the nth node from the end of list and return its head.
+
+For example,
+
+   Given linked list: 1->2->3->4->5, and n = 2.
+
+   After removing the second node from the end, the linked list becomes 1->2->3->5.
+Note:
+Given n will always be valid.
+Try to do this in one pass.
+
+####思路总结####
+将从链表末尾数的第N个的数据移除。其实这就是对链表某个指定元素的操作问题。
+官方定义的每个节点的结构体如下（Definition for singly-linked list）：
+
+      struct ListNode {
+	      int val;
+	      ListNode *next;
+          ListNode(int x) : val(x), next(NULL) {}
+	  };
+	 
+ ListNode(int x) : val(x), next(NULL) {}  这个是初始化它的值和它的下一个指针的函数。
+
+指向结构体的指针： 
+
+                 struct ListNode *p;
+                 struct ListNod l1;
+                 p=&l1;//p指向l1
+ 
+指向结构体某个值的方式：
+
+                p->val;//第一种
+				(*p).val;//第二种
+
+
