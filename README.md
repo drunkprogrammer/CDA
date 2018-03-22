@@ -206,4 +206,30 @@ Try to do this in one pass.
                 p->val;//第一种
 				(*p).val;//第二种
 
+解决代码：
+
+	/**
+	 * Definition for singly-linked list.
+	 * struct ListNode {
+	 *     int val;
+	 *     ListNode *next;
+	 *     ListNode(int x) : val(x), next(NULL) {}
+	 * };
+	 */
+	class Solution
+	{
+	public:
+	    ListNode* removeNthFromEnd(ListNode* head, int n)
+	    {
+	        ListNode *begin=head, **temp=&head;
+	        for(int i=1;i<n;i++) begin=begin->next;
+	        while(begin->next!=NULL)
+	        {
+	            temp=&((*temp)->next);
+	            begin=begin->next;
+	        }
+	        *temp=(*temp)->next;
+	        return head;
+	    }
+	};
 
