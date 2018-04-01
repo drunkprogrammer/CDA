@@ -1,0 +1,42 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+class toJudgeString
+{
+public:
+	int judge(int num, char **cc)
+	{
+		vector<int> first;
+		vector<int> end;
+		for (int i = 0; i < num; i++)
+		{
+			int length=strlen(cc[i]);
+			first.push_back(cc[i][0]);
+			end.push_back(cc[i][length-1]);
+		}
+		vector<int>::iterator it;
+		vector<int>::iterator at;
+		it = first.begin();
+		at = end.begin();
+		for (int j = 0; j < num; j++)
+		{
+			it = find(first.begin(), first.end(), end[j]);
+			if (it!=first.end() && it!=(it+j))
+			{
+				first.erase(it);
+				end.erase(at+j);
+				return 0;
+			}
+		}
+		if (first.size() == 1 && end.size() == 1) return 1;
+		return 0;
+
+	}
+};
+
+int main()
+{
+	char* aa[5]={"aa","bb"};
+	toJudgeString string;
+	string.judge(4,aa);
+}
