@@ -1,0 +1,36 @@
+#include<list>
+#include<algorithm>
+#include<string>
+class Solution {
+public:
+    vector<string> subdomainVisits(vector<string>& cpdomains) {
+        map<string,int> domains;
+        string subdomain;
+        for(auto domain:cpdomains)
+        {
+            int num=0;
+            for(int i=0;i<domain.size();i++)
+            {
+                if(domain[i]==' ')
+                {
+                    subdomain=domain.substr(i+1);
+                    break;
+                }
+                else
+                {
+                    num=num*10+(domain[i]-'0');
+                }
+            }
+            domains[subdomain]+=num;
+            for(int j=0;j<subdomain.length();j++)
+            {
+                if(subdomain[j]=='.')
+                domains[subdomain.substr(j+1)]+=num;
+            }
+        }
+        vector<string> subdomains;
+        for(auto subdomain:domains)
+        subdomains.push_back(to_string(subdomain.second)+" "+subdomain.first); 
+        return subdomains;
+    } 
+};
