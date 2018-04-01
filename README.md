@@ -233,3 +233,93 @@ Try to do this in one pass.
 	    }
 	};
 
+
+##Map##
+###[Subdomain Visit Count]###
+####811-问题描述####
+A website domain like "discuss.leetcode.com" consists of various subdomains. At the top level, we have "com", at the next level, we have "leetcode.com", and at the lowest level, "discuss.leetcode.com". When we visit a domain like "discuss.leetcode.com", we will also visit the parent domains "leetcode.com" and "com" implicitly.
+
+Now, call a "count-paired domain" to be a count (representing the number of visits this domain received), followed by a space, followed by the address. An example of a count-paired domain might be "9001 discuss.leetcode.com".
+
+We are given a list cpdomains of count-paired domains. We would like a list of count-paired domains, (in the same format as the input, and in any order), that explicitly counts the number of visits to each subdomain.
+
+#####Example 1:#####
+
+Input: 
+["9001 discuss.leetcode.com"]
+
+Output: 
+["9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com"]
+
+Explanation: 
+We only have one website domain: "discuss.leetcode.com". As discussed above, the subdomain "leetcode.com" and "com" will also be visited. So they will all be visited 9001 times.
+
+#####Example 2:#####
+
+Input: 
+["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]
+
+Output: 
+["901 mail.com","50 yahoo.com","900 google.mail.com","5 wiki.org","5 org","1 intel.mail.com","951 com"]
+
+Explanation: 
+We will visit "google.mail.com" 900 times, "yahoo.com" 50 times, "intel.mail.com" once and "wiki.org" 5 times. For the subdomains, we will visit "mail.com" 900 + 1 = 901 times, "com" 900 + 50 + 1 = 951 times, and "org" 5 times.
+
+#####Notes:#####
+
+The length of cpdomains will not exceed 100. 
+
+The length of each domain name will not exceed 100.
+
+Each address will have either 1 or 2 "." characters.
+
+The input count in any count-paired domain will not exceed 10000.
+
+####思路总结####
+计算各个子域名出现的次数.通过题目中给的测试用例，我们可以知道：
+
+"900 google.mail.com" 表示 google.mail.com被访问了900次，mail.com也同样被访问了900次，com也被访问了500次。
+
+如果有相同被访问的域名，则把次数相加。
+
+所以我们可以用map来保存被访问的域名和被访问的次数，map<key,value>。map属于关联性容器，它和multimap的区别在于，map中的键(key)不能重复，可以用索引和at方法查找值，但是multimap中的键可以重复。
+
+我们需要先将字符串中的数字提取出来，可以先用find方法，找到空格，再截取字符串，最后用atoi方法将字符串转换成int型。但是还有一种更简单的方法，直接计算，可以看看代码实现部分。之后我们将域名的子域名也存入map,如果遇到相同的，则加上之前的值。
+
+####代码实现####
+	#include<list>
+	#include<algorithm>
+	#include<string>
+	class Solution {
+	public:
+	    vector<string> subdomainVisits(vector<string>& cpdomains) {
+	        map<string,int> domains;
+	        string subdomain;
+	        for(auto domain:cpdomains)
+	        {
+	            int num=0;
+	            for(int i=0;i<domain.size();i++)
+	            {
+	                if(domain[i]==' ')
+	                {
+	                    subdomain=domain.substr(i+1);
+	                    break;
+	                }
+	                else
+	                {
+	                    num=num*10+(domain[i]-'0');//字符串中的数字
+	                }
+	            }
+	            domains[subdomain]+=num;
+	            for(int j=0;j<subdomain.length();j++)
+	            {
+	                if(subdomain[j]=='.')
+	                domains[subdomain.substr(j+1)]+=num;
+	            }
+	        }
+	        vector<string> subdomains;
+	        for(auto subdomain:domains)
+	        subdomains.push_back(to_string(subdomain.second)+" "+subdomain.first); 
+	        return subdomains;
+	    } 
+	};
