@@ -105,7 +105,7 @@ lower_bound()返回的是一个不小于x的距离x最短值。
 ## Stack ##
 
 ###[Valid Parentheses]###
-#### 20- 问题描述####
+#### 20-问题描述####
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
