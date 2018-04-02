@@ -168,6 +168,7 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 毕竟vector也是用来实现栈的底层容器......
 
 
+
 ##Linked List##
 ###[Remove Nth Node From End of List]###
 ####19-问题描述####
@@ -231,6 +232,9 @@ Try to do this in one pass.
 	        return head;
 	    }
 	};
+
+
+
 
 
 ##Map##
