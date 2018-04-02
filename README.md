@@ -103,7 +103,6 @@ lower_bound()返回的是一个不小于x的距离x最短值。
 
 
 ## Stack ##
-
 ###[Valid Parentheses]###
 #### 20-问题描述####
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
@@ -235,8 +234,11 @@ Try to do this in one pass.
 
 
 ##Map##
+
 ###[Subdomain Visit Count]###
+
 ####811-问题描述####
+
 A website domain like "discuss.leetcode.com" consists of various subdomains. At the top level, we have "com", at the next level, we have "leetcode.com", and at the lowest level, "discuss.leetcode.com". When we visit a domain like "discuss.leetcode.com", we will also visit the parent domains "leetcode.com" and "com" implicitly.
 
 Now, call a "count-paired domain" to be a count (representing the number of visits this domain received), followed by a space, followed by the address. An example of a count-paired domain might be "9001 discuss.leetcode.com".
