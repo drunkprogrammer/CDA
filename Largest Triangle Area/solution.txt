@@ -9,9 +9,8 @@ public:
                 for(int k=j+1;k<points.size();k++)
                 {
                             
-double maxarea=abs(points[i][0]*points[j][1]+points[j][0]*points[k][1]+points[i][0]*points[k][1]-points[i][1]*points[j][0]-points[j][1]*points[k][0]-points[i][1]*points[k][0])/2;
-            
-                            area=max(maxarea,area);
+                double maxarea=abs(points[i][0]*points[j][1]+points[j][0]*points[k][1]+points[i][1]*points[k][0]-points[i][1]*points[j][0]-                   points[j][1]*points[k][0]-points[i][0]*points[k][1])/2.0;
+                area=max(maxarea,area);
                        
                 }
             }
