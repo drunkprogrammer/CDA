@@ -1,39 +1,23 @@
 class Solution {
-    private:
-    double edge1;
-    double edge2;
-    double edge3;
-    double maxarea=0;
 public:
-    bool isTriangleArea(vector<int> firstpoint,vector<int> secondpoint,vector<int> thirdpoint){
-        
-        edge1=sqrt(((firstpoint[0]-secondpoint[0])^2)+((firstpoint[1]-secondpoint[1])^2));
-        edge2=sqrt(((firstpoint[0]-thirdpoint[0])^2)+((firstpoint[1]-thirdpoint[1])^2));
-        edge3=sqrt(((secondpoint[0]-thirdpoint[0])^2)+((secondpoint[1]-thirdpoint[1])^2));
-        
-        if(edge1+edge2>edge3 || edge1+edge3>edge2 || edge2+edge3>edge1)
-            return true;
-        return false;
-    }
     double largestTriangleArea(vector<vector<int>>& points) {
+        double area=0;
         for(int i=0;i<points.size();i++)
         {
             for(int j=i+1;j<points.size();j++)
             {
                 for(int k=j+1;k<points.size();k++)
                 {
-                    if(isTriangleArea(points[i],points[j],points[k]))
-                       {
-                            double sum=(edge1+edge2+edge3)/2;
-                            double area=sqrt(sum*(sum-edge1)*(sum-edge2)*(sum-edge3));
-                            maxarea=max(maxarea,area);
-                        cout<<maxarea;
-                       }
+                            
+double maxarea=abs(points[i][0]*points[j][1]+points[j][0]*points[k][1]+points[i][0]*points[k][1]-points[i][1]*points[j][0]-points[j][1]*points[k][0]-points[i][1]*points[k][0])/2;
+            
+                            area=max(maxarea,area);
+                       
                 }
             }
             
         }
         
-        return maxarea;
+        return area;
     }
 };
