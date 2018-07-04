@@ -103,8 +103,8 @@ lower_bound()返回的是一个不小于x的距离x最短值。
 
 
 ## Stack ##
-###[Valid Parentheses]###
-#### 20-问题描述####
+### [Valid Parentheses] ###
+#### 20-问题描述 ####
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
@@ -169,9 +169,12 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 
 
 
-##Linked List##
-###[Remove Nth Node From End of List]###
-####19-问题描述####
+## Linked List ##
+
+### [Remove Nth Node From End of List] ###
+
+#### 19-问题描述 ####
+
 Given a linked list, remove the nth node from the end of list and return its head.
 
 For example,
@@ -183,7 +186,8 @@ Note:
 Given n will always be valid.
 Try to do this in one pass.
 
-####思路总结####
+#### 思路总结 ####
+
 将从链表末尾数的第N个的数据移除。其实这就是对链表某个指定元素的操作问题。
 官方定义的每个节点的结构体如下（Definition for singly-linked list）：
 
@@ -237,11 +241,11 @@ Try to do this in one pass.
 
 
 
-##Map##
+## Map ##
 
-###[Subdomain Visit Count]###
+### [Subdomain Visit Count] ###
 
-####811-问题描述####
+#### 811-问题描述 ####
 
 A website domain like "discuss.leetcode.com" consists of various subdomains. At the top level, we have "com", at the next level, we have "leetcode.com", and at the lowest level, "discuss.leetcode.com". When we visit a domain like "discuss.leetcode.com", we will also visit the parent domains "leetcode.com" and "com" implicitly.
 
@@ -249,7 +253,7 @@ Now, call a "count-paired domain" to be a count (representing the number of visi
 
 We are given a list cpdomains of count-paired domains. We would like a list of count-paired domains, (in the same format as the input, and in any order), that explicitly counts the number of visits to each subdomain.
 
-#####Example 1:#####
+##### Example 1: #####
 
 Input: 
 ["9001 discuss.leetcode.com"]
@@ -260,7 +264,7 @@ Output:
 Explanation: 
 We only have one website domain: "discuss.leetcode.com". As discussed above, the subdomain "leetcode.com" and "com" will also be visited. So they will all be visited 9001 times.
 
-#####Example 2:#####
+##### Example 2: #####
 
 Input: 
 ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]
@@ -271,7 +275,7 @@ Output:
 Explanation: 
 We will visit "google.mail.com" 900 times, "yahoo.com" 50 times, "intel.mail.com" once and "wiki.org" 5 times. For the subdomains, we will visit "mail.com" 900 + 1 = 901 times, "com" 900 + 50 + 1 = 951 times, and "org" 5 times.
 
-#####Notes:#####
+##### Notes: #####
 
 The length of cpdomains will not exceed 100. 
 
@@ -282,7 +286,7 @@ Each address will have either 1 or 2 "." characters.
 The input count in any count-paired domain will not exceed 10000.
 
 
-####思路总结####
+#### 思路总结 ####
 计算各个子域名出现的次数.通过题目中给的测试用例，我们可以知道：
 
 "900 google.mail.com" 表示 google.mail.com被访问了900次，mail.com也同样被访问了900次，com也被访问了500次。
@@ -294,7 +298,7 @@ The input count in any count-paired domain will not exceed 10000.
 我们需要先将字符串中的数字提取出来，可以先用find方法，找到空格，再截取字符串，最后用atoi方法将字符串转换成int型。但是还有一种更简单的方法，直接计算，可以看看代码实现部分。之后我们将域名的子域名也存入map,如果遇到相同的，则加上之前的值。
 
 
-####代码实现####
+#### 代码实现 ####
 
 	#include<list>
 	#include<algorithm>
