@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+#define maxsize 1000000
+using namespace std;
+int main()
+{
+    freopen("1.txt", "r", stdin);
+    int a, b;
+    cin >> a >> b;
+    int k = 0;                       //记录第几个素数
+    long long number[maxsize] = {0}; //未做标记即为0，表示是质数，不是合数
+    for (int i = 2; i < maxsize; i++)
+    {
+        if (number[i] == 0)
+        {
+            int k = 2;
+            for (int t = 2; t * i <= maxsize; t++)
+            {
+                if (number[t * i] == 0)
+                    number[t * i] = 1; //做标记即为1，表示是合数
+            }
+        }
+    }
+    int temp = a;
+    for (int y = 2; y < maxsize; y++)
+    {
+        if (number[y] == 0)
+        {
+            k++;
+
+            if (k >= a && k <= b)
+            {
+                if ((k - temp) % 9 == 0 && k != temp)
+                {
+                    cout << y << endl;
+                    temp += 10;
+                }
+                else if (k == b)
+                    cout << y;
+                else
+                    cout << y << " ";
+            }
+        }
+    }
+}
