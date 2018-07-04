@@ -281,6 +281,7 @@ Each address will have either 1 or 2 "." characters.
 
 The input count in any count-paired domain will not exceed 10000.
 
+
 ####思路总结####
 计算各个子域名出现的次数.通过题目中给的测试用例，我们可以知道：
 
@@ -292,7 +293,9 @@ The input count in any count-paired domain will not exceed 10000.
 
 我们需要先将字符串中的数字提取出来，可以先用find方法，找到空格，再截取字符串，最后用atoi方法将字符串转换成int型。但是还有一种更简单的方法，直接计算，可以看看代码实现部分。之后我们将域名的子域名也存入map,如果遇到相同的，则加上之前的值。
 
+
 ####代码实现####
+
 	#include<list>
 	#include<algorithm>
 	#include<string>
