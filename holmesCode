@@ -1,0 +1,64 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
+//在一行中输出约会的时间，格式为“DAY HH:MM”，其中“DAY”是某星期的3字符缩写，即MON表示星期一，TUE表示星期二，WED表示星期三，THU表示星期四，FRI表示星期五，SAT表示星期六，SUN表示星期日。题目输入保证每个测试存在唯一解。
+string day[7] = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
+bool judge(char x1, char x2, int &k, string &time, int i)
+{
+    if (x1 == x2)
+    {
+        if (k == 1 && x1>='A' && x1<='Z')
+        {
+            int num = x1 - 'A';
+            time = day[num];
+            return true;
+        }
+
+        if (k == 2 && ((x1>='0' && x1<='9')||(x1>='A' && x1<='Z')))
+        {
+            if (x1 >= '0' && x1 <= '9')
+                time = time + " 0" + x1 + ":";
+            else
+            {
+                int hour = x1 - 'A' + 10;
+                //  string hh="";
+                //  itoa(hour,hh,10); itoa没有定义，本来和atoi是互为相反功能的函数, itoa是将整型转换成字符串，atoi是将字符串转换成整型
+                time = time + " " + to_string(hour) + ":"; //使用to_string将int转换成string
+            }
+            return true;
+        }
+
+        if (k == 3 && ((x1>='a' && x1<='z')||(x1>='A' && x1<='Z')))
+        {
+            if (i > 9)
+                time = time + to_string(i);
+            else
+                time = time + "0" + to_string(i);
+           return true;
+        }
+    }
+    return false;
+}
+
+int main()
+{
+    string a, b, c, d;
+    freopen("1.txt", "r", stdin);
+    cin >> a >> b >> c >> d;
+    string time = "";
+    int k = 1; //判断是第几个相等的字母
+    for (int i = 0; i < a.length(); i++)
+    {
+        if(judge(a[i], b[i], k, time, i))
+        k++;
+        if(k==3)
+        break;
+    }
+    for (int j = 0; j < c.length(); j++)
+    {
+        if(judge(c[j], d[j], k, time, j))
+        k++;
+    }
+    cout<<time<<endl;
+}
